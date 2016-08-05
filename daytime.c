@@ -23,6 +23,9 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <string.h>
+#define SOCKET int
+#define SD_BOTH SHUT_RDWR
 #endif
 
 #define PORT			13
@@ -56,7 +59,12 @@ tcp_init_win32(void)
 	}
 	return 0;
 }
+#else
+
+
 #endif
+
+
 
 static SOCKET 
 tcp_listen(int port, int nb_connection)
@@ -285,7 +293,7 @@ update_daytime_msg(char * daytime_msg)
 	info = gmtime(&rawtime);
 		
 	strftime(time_str, DAYTIME_MSG_LEN+1, "%y-%m-%d %H:%M:%S", info);
-	sprintf_s(daytime_msg, DAYTIME_MSG_LEN+1, "\n%i %s %02i 0 0  00.0 UTC(NIST) * \n", MJD(info), time_str, TT(info));
+	snprintf(daytime_msg, DAYTIME_MSG_LEN+1, "\n%i %s %02i 0 0  00.0 UTC(NIST) * \n", MJD(info), time_str, TT(info));
 }
 
 int
