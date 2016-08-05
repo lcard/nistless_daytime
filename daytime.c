@@ -299,7 +299,7 @@ main(int argc, char ** argv)
 	int sent_size;
 	char daytime_msg[DAYTIME_MSG_LEN + 1];
 
-	fprintf(stderr, "MH Daytime Service (Loren Card, lcard@hydro.mb.ca, August 2016)\n");
+	fprintf(stderr, "Daytime Service (Loren Card, loren.card@gmail.com, August 2016)\n");
 
 	sock = tcp_listen(PORT, NB_CONNECTION);
 	if (sock < 0) {
